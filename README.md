@@ -8,7 +8,6 @@ Crypt Bash is a CLI (Command Line Interface) program that enables fast and simpl
 - **File Encryption**: Protect your text files with strong encryption algorithms.
 - **File Decryption**: Retrieve your encrypted files effortlessly.
 - **Bulk Expired Key Deletion**: Remove all expired GPG keys in one go.
-- **Encrypted File Discovery**: Scan your system for all encrypted files to manage your data effectively.
 - **User-Friendly Menu**: Simple and intuitive interface for all operations.
 
 ## Installation
