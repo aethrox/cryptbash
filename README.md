@@ -13,6 +13,8 @@ Crypt Bash is a CLI (Command Line Interface) program that enables fast and simpl
 - **Bulk Expired Key Deletion**: Remove all expired GPG keys in one go.
 - **User-Friendly Menu**: Simple and intuitive interface for all operations.
 
+<!--
+
 ## Installation
 
 1. **Clone Crypt Bash**:
@@ -50,6 +52,8 @@ Follow the prompts to perform your desired operations.
 ## Contributing
 
 If you'd like to contribute to the project, please open a pull request or report an issue.
+
+-->
 
 ## License
 
