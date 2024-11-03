@@ -3,7 +3,7 @@
 Crypt Bash is a CLI (Command Line Interface) program that enables fast and simple file encryption, decryption, and GPG key creation using GnuPG. With its user-friendly menu, you can secure your files without dealing with complex commands.
 
 > [!CAUTION]
-> **It is currently under construction, so it is not yet available. No code is available in the repository.**
+> **The project is currently under construction, so it is not yet usable. You can follow the developments by clicking the star icon in the top right corner to receive notifications.**
 
 ## Features
 
