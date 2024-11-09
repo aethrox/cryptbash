@@ -78,6 +78,7 @@ EOF
   rm gpg_batch
 
   echo "The GPG key has been created"
+  read -p "Press Enter to continue.."
 
   # Redirect to the main menu
   menu
