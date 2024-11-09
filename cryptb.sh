@@ -152,6 +152,7 @@ check_gpg_keys() {
 # Function to list GPG keys
 list_gpg_keys() {
 
+  # If this argument is true, only list the keys and return to the main menu. Otherwise, continue with the function.
   only_list=$1
   has_keys=$(check_gpg_keys)
   formatted_keys=$(get_gpg_keys "true")
