@@ -85,8 +85,33 @@ EOF
 
 # Function to delete a key (placeholder)
 delete_key() {
-  echo "Deleting a key.."
-  sleep 2
+  while (true); do
+    clear
+    list_gpg_keys "false"
+    selected_key=$(select_gpg_key)
+
+    if [ -z "$selected_key" ]; then
+      echo "Invalid key selected"
+    else
+      echo "Selected key: $selected_key"
+      read -r -p "Are you sure you want to delete the key? (y/n): " answer
+
+      if [[ "${answer,,}" =~ ^(y|yes)$ ]]; then
+        gpg --delete-secret-keys "$selected_key"
+        gpg --delete-keys "$selected_key"
+        echo "Key deleted successfully"
+        read -p "Press Enter to continue.."
+        menu
+      else
+        read -r -p "Do you want to delete another key? (y/n): " another_key
+
+        if [[ "${another_key,,}" =~ ^(n|no)$ ]]; then
+          menu
+          return
+        fi
+      fi
+    fi
+  done
 }
 
 # Function to redirect to the main menu
