@@ -204,6 +204,7 @@ clear_expired_keys() {
 }
 
 # Function to encrypt a file
+#FIXME - We are getting a “File Not Found” error. Rewrite the controls.
 encrypt_file() {
   clear
   list_gpg_keys "false"
