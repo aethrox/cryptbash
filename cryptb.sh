@@ -80,8 +80,8 @@ EOF
   echo "The GPG key has been created"
   read -p "Press Enter to continue.."
 
-  # Redirect to the main menu
-  menu
+  clear
+  return
 }
 
 # Function to delete a key (placeholder)
@@ -102,24 +102,18 @@ delete_key() {
         gpg --delete-keys "$selected_key"
         echo "Key deleted successfully"
         read -p "Press Enter to continue.."
-        menu
+        clear
+        return
       else
         read -r -p "Do you want to delete another key? (y/n): " another_key
 
         if [[ "${another_key,,}" =~ ^(n|no)$ ]]; then
-          menu
+          clear
           return
         fi
       fi
     fi
   done
-}
-
-# Function to redirect to the main menu
-redirect_menu() {
-  echo "Redirecting to the main menu.."
-  sleep 2
-  menu
 }
 
 # Function to get the GPG keys
@@ -184,7 +178,7 @@ list_gpg_keys() {
   formatted_keys=$(get_gpg_keys "true")
 
   if [ "$has_keys" = "false" ]; then
-    redirect_menu
+    return
   else
     clear
 
@@ -196,7 +190,8 @@ list_gpg_keys() {
 
     if [ "$only_list" = "true" ]; then
       read -p "Press Enter to continue.."
-      menu
+      clear
+      return
     fi
   fi
 }
@@ -206,9 +201,7 @@ select_gpg_key() {
   gpg_keys=$(get_gpg_keys "false")
   gpg_keys_length=$(get_gpg_keys_length)
 
-  if [ "$gpg_keys_length" -eq 0 ]; then
-    redirect_menu
-  else
+  if [ "$gpg_keys_length" -gt 0 ]; then
     while true; do
       read -p "Enter the key number to select a recipient: " key_number
 
@@ -235,7 +228,8 @@ encrypt_file() {
   selected_recipient=$(select_gpg_key)
 
   if [ "$selected_recipient" = "false" ]; then
-    menu
+    clear
+    return
   fi
 
   while true; do
@@ -253,7 +247,7 @@ encrypt_file() {
 
       read -r -p "Do you want to try again? (y/n): " try_again
       if [[ "${try_again,,}" =~ ^(n|no)$ ]]; then
-        menu
+        clear
         return
       fi
     else
@@ -267,7 +261,7 @@ encrypt_file() {
       if [ $gpg_exit_code -ne 0 ]; then
         echo "Error encrypting file: $gpg_output"
         read -p "Press Enter to continue.."
-        menu
+        clear
         return
       fi
 
@@ -282,7 +276,7 @@ encrypt_file() {
       fi
 
       read -p "Press Enter to continue.."
-      menu
+      clear
       return
     fi
   done
@@ -306,7 +300,7 @@ decrypt_file() {
 
       read -r -p "Do you want to try again? (y/n): " try_again
       if [[ "${try_again,,}" =~ ^(n|no)$ ]]; then
-        menu
+        clear
         return
       fi
     else
@@ -320,7 +314,7 @@ decrypt_file() {
       if [ $gpg_exit_code -ne 0 ]; then
         echo "Error decrypting file: $gpg_output"
         read -p "Press Enter to continue.."
-        menu
+        clear
         return
       fi
 
@@ -335,7 +329,7 @@ decrypt_file() {
       fi
 
       read -p "Press Enter to continue.."
-      menu
+      clear
       return
     fi
   done
@@ -405,7 +399,7 @@ menu() {
     4) decrypt_file ;;
     5) clear_expired_keys ;;
     6) delete_key ;;
-    7) exit ;;
+    7) clear && exit ;;
     *) echo "Invalid option" ;;
     esac
   done
