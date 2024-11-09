@@ -131,12 +131,12 @@ get_gpg_keys() {
       key_info=$(gpg --list-secret-keys --keyid-format LONG "$key_id")
       author_name=$(echo "$key_info" | grep uid | sed 's/uid\s*//;s/<.*>//')
       author_email=$(echo "$key_info" | grep uid | sed 's/.*<//;s/>.*//')
-      expiration_date=$(echo "$key_info" | grep "expire" | awk '{print $NF}' | sed 's/\[//;s/\].*//' | grep -oP '\d{4}-\d{2}-\d{2}')
-      formatted_keys+=("Key Number: $count\nKey ID: $key_id\nKey Content: $author_name <$author_email>\nExpired date: $expiration_date\n")
+      expiration_date=$(echo "$key_info" | grep "expire" | awk '{print $NF}' | sed 's/\[//;s/\].*//' | head -n 1)
+      formatted_keys+=("Key Number: $count\nKey ID: $key_id\nKey Content: $author_name <$author_email>\nExpiration Date: $expiration_date\n")
       count=$((count + 1))
     done <<<"$gpg_keys_info"
 
-    echo "${formatted_keys[@]}"
+    printf "%s\n" "${formatted_keys[@]}"
   else
     echo "$gpg_keys"
   fi
