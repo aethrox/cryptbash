@@ -186,13 +186,10 @@ select_gpg_key() {
     while true; do
       read -p "Enter the key number to select a recipient: " key_number
 
-      # Check if the key number is a number and within the range
-      if [[ "$key_number" =~ ^[0-9]+$ ]]; then
-        if [ "$key_number" -gt 0 ] && [ "$key_number" -le "$gpg_keys_length" ]; then
-          selected_key=$(echo "$gpg_keys" | grep -A1 "sec" | grep -v "sec" | grep -v -- "^--" | sed -n "${key_number}p" | awk '{print $1}')
-          echo "$selected_key"
-          break
-        fi
+      if [ "$key_number" -gt 0 ] && [ "$key_number" -le "$gpg_keys_length" ]; then
+        selected_key=$(echo "$gpg_keys" | grep -A1 "sec" | grep -v "sec" | grep -v -- "^--" | sed -n "${key_number}p" | awk '{print $1}')
+        echo "$selected_key"
+        break
       fi
     done
   fi
