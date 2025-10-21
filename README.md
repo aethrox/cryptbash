@@ -60,7 +60,3 @@ If you'd like to contribute to the project, please open a pull request or report
 ## License
 
 This project is licensed under the MIT License. For more information, please refer to the `LICENSE` file.
-
-## Contact
-
-For questions or feedback, feel free to reach out to [aethrox](mailto:kaan@aethrx.com).
