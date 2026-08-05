@@ -1,62 +1,50 @@
 # Crypt Bash
 
-Crypt Bash is a CLI (Command Line Interface) program that enables fast and simple file encryption, decryption, and GPG key creation using GnuPG. With its user-friendly menu, you can secure your files without dealing with complex commands.
-
-> [!CAUTION]
-> **The project is currently under construction, so it is not yet usable. You can follow the developments by clicking the star icon in the top right corner to receive notifications.**
+A CLI tool for fast, simple file encryption, decryption, and GPG key management using GnuPG, driven by a menu so you don't have to remember GPG's flags.
 
 ## Features
 
-- **GPG Key Generation**: Easily generate your own GPG keys.
-- **List GPG Keys**: List and browse the keys you have.
-- **File Encryption**: Protect your text files with strong encryption algorithms.
-- **File Decryption**: Effortlessly retrieve your encrypted files.
-- **Bulk Expired Key Deletion**: Remove all expired GPG keys at once.
-- **Key Deletion**: Simply select the key you want to remove from the list and remove it.
-- **User Friendly Menu**: Simple and intuitive interface for all operations.
+- **GPG Key Generation**: create a new key with adjustable strength (2048/3072/4096-bit)
+- **List GPG Keys**: list and browse the keys you have
+- **File Encryption**: protect files with GPG
+- **File Decryption**: retrieve your encrypted files
+- **Bulk Expired Key Deletion**: remove all expired GPG keys at once
+- **Key Deletion**: select a key from the list and remove it
+- **Package manager detection**: detects apt, dnf, yum, pacman, or zypper and offers to install GnuPG if it's missing
 
-<!--
+## Quick Start
 
-## Installation
+**Requirements:** Bash, one of apt/dnf/yum/pacman/zypper (used to auto-install GnuPG if it's not already present).
 
-1. **Clone Crypt Bash**:
-
-   ```bash
-   git clone https://github.com/username/cryptbash.git
-   cd cryptbash
-   ```
-
-2. **Set Permissions**:
-
-   ```bash
-   chmod +x cryptbash
-   ```
-
-3. **Run the Program**:
-
-   ```bash
-   ./cryptbash
-   ```
+```bash
+git clone https://github.com/aethrox/cryptbash.git
+cd cryptbash
+chmod +x cryptb.sh
+./cryptb.sh
+```
 
 ## Usage
 
-When you run the program, you will see the following menu options:
+Running `./cryptb.sh` opens a menu:
 
-1. Create GPG Key
-2. Encrypt File
-3. Decrypt File
-4. Delete Expired Keys
-5. Delete Key
-6. Exit
+```
+1) Create a GPG key
+2) List GPG keys
+3) Encrypt a file
+4) Decrypt a file
+5) Delete expired keys
+6) Delete key
+7) Exit
+```
 
-Follow the prompts to perform your desired operations.
+Follow the prompts for each operation. Encrypt/decrypt operations ask for an output path and offer to create missing directories or avoid overwriting existing files.
 
-## Contributing
+## Limitations
 
-If you'd like to contribute to the project, please open a pull request or report an issue.
-
--->
+- Interactive only: there's no non-interactive/scripted mode (no flags to pass a file path or key ID directly).
+- Only tested against the package managers listed above; other distros or non-Linux systems (macOS, BSD) aren't handled by the auto-install step.
+- No automated tests in this repo; correctness relies on manual runs against a real GnuPG installation.
 
 ## License
 
-This project is licensed under the MIT License. For more information, please refer to the `LICENSE` file.
+MIT, see the [LICENSE](LICENSE) file.
